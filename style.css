@@ -1,0 +1,332 @@
+@charset "utf-8";
+
+/*
+DownloadSupport for Google+
+*/
+
+.dsg-dl-window{
+  display:none;
+}
+
+
+div.dsg-nav{
+  margin-top:16px;
+  margin-left:20px;
+}
+div.dsg-nav-title{
+  border-bottom: 1px solid #EBEBEB;
+  color: #484848;
+  font-size: 11px;
+  font-weight: bold;
+  margin: 35px 0 10px 0;
+  padding-bottom: 6px;
+}
+
+a.dsg-nav-switch{
+  display:inline-block;
+  height: 36px;
+  width: 36px;
+	background-size:72px 36px;
+}
+
+a.dsg-nav-switch:hover{
+  cursor:pointer;
+}
+
+
+a.dsg-nav-switch.dsg-nav-switch-user{
+  position:fixed;
+  right:8px;
+  bottom:32px;
+  z-index:1001;
+  height: 36px;
+  width: 36px;
+  opacity:.5;
+	background-size:72px 36px;
+  background-position:-36px 0px;
+}
+a.dsg-nav-switch.dsg-nav-switch-user:hover{
+  background-position:0px 0px;
+  opacity:1;
+}
+
+/*
+------------------------------------------------
+確認ダイアログ
+*/
+
+.dsg-dl-dialog-frame{
+  display:none;
+  position:fixed;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  z-index:9990;
+}
+.dsg-dl-dialog-mask{
+  display:block;
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  z-index:9900;
+  background-color: rgba(255, 255, 255, .5);
+}
+
+.dsg-dl-dialog{
+  display:block;
+  position:relative;
+  left:0;
+  top:0;
+	margin:96px auto;
+	padding:20px 0px;
+  width:360px;
+  z-index:9999;
+  background-color: rgba(255, 255, 255, 1);
+  border:1px solid rgba(150, 150, 150, 1);
+  box-shadow:0px 4px 16px rgba(0, 0, 0, .2);
+
+}
+.dsg-dl-dialog:after{
+  display:block;
+  content:"";
+  clear:both;
+}
+
+.dsg-dl-dialog .dsg-dl-text{
+  text-align:center;
+}
+
+.dsg-dl-dialog ul.dsg-dl-buttons{
+  width:320px;
+  margin:10px auto;
+	border-bottom: 1px solid #dddddd;
+}
+.dsg-dl-dialog ul.dsg-dl-buttons:after{
+  display:block;
+  content:"";
+  clear:both;
+}
+
+.dsg-dl-dialog .dsg-dl-button{
+  display:block;
+  width:120px;
+  height:30px;
+  text-align:center;
+  line-height:30px;
+  float:left;
+  margin:10px;
+  background-color:rgba(200, 200, 200, 1);
+  color:rgba(0, 0, 0, 1);
+  border:1px solid rgba(0, 0, 0, 1);
+  border-radius:4px;
+  cursor:pointer;
+  font-size:11px;
+}
+
+
+.dsg-dl-dialog .dsg-dl-button.dsg-dl-ok{
+  background-color:rgba(56, 135, 0, 1);
+  color:rgba(255, 255, 255, 1);
+}
+
+.dsg-dl-dialog .dsg-menu-title{
+	padding:0px 20px;
+  text-align:right;
+	color:#888888;
+	cursor:pointer;
+}
+.dsg-dl-dialog .dsg-menu-title:hover{
+	color:#222222;
+}
+.dsg-dl-dialog .dsg-form{
+	padding:10px 20px;
+}
+.dsg-dl-dialog .dsg-form label{
+	display:block;
+	color:#888888;
+	cursor:pointer;
+}
+.dsg-dl-dialog .dsg-form label:hover{
+	color:#222222;
+}
+
+/*
+------------------------------------------------
+画像一覧
+*/
+
+div.dsg-dl-list-panel{
+  display:block;
+	position:relative;
+	left:0px;
+	top:0px;
+	border-bottom: 1px solid #dddddd;
+	padding : 16px;
+}
+
+
+div.dsg-dl-list-panel .dsg-close-button{
+  display:block;
+	position:absolute;
+	right:20px;
+	top:8px;
+}
+
+ul.dsg-dl-list{
+	list-style-type:none;
+}
+ul.dsg-dl-list:after{
+  display:block;
+  content:"";
+  clear:both;
+}
+
+ul.dsg-dl-list li{
+	display:block;
+	position:relative;
+	left:0px;
+	top:0px;
+  float:left;
+	width:64px;
+	height:48px;
+}
+
+ul.dsg-dl-list a{
+	display:block;
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	height:100%;
+}
+
+ul.dsg-dl-list img.thumb{
+	max-width:62px;
+	max-height:46px;
+}
+
+ul.dsg-dl-list a:hover img.thumb{
+	position:relative;
+	left:1px;
+	top:1px;
+}
+
+ul.dsg-dl-list img.big{
+	display:none;
+	position:absolute;
+	left:32px;
+	top:48px;
+	max-width:400px;
+	max-height:300px;
+	z-index:999;
+}
+
+ul.dsg-dl-list a:hover img.big{
+	display:block;
+}
+
+
+.dsg-close-button{
+	width:18px;
+	height:18px;
+	cursor:pointer;
+	background-repeat:no-repeat;
+	background-position:50% 50%;
+	background-image:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAIAAABv85FHAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABPSURBVHjafI3LCQAxCESNacQSLMnOtCQ7coUFGTzEwzAf5B13JyIzI7iIaGUMy/N8/NUM3Z+qWn+DYAzLP3mLgfMVERxUNTPbtL54nwADALBkKLyXd6MqAAAAAElFTkSuQmCC');
+}
+
+
+/*
+------------------------------------------------
+記事毎ボタン
+*/
+/*
+.dsg-content-parent{
+	position:relative;
+	left:0;
+	top:0;
+}
+*/
+
+.dsg-buttons{
+	display:inline;
+	padding-left:8px;
+}
+.dsg-buttons:before{
+	display:inline;
+	content:" - ";
+}
+
+.dsg-content-parent .dsg-buttons.dsg-buttons-side{
+	display:block;
+	position:absolute;
+	left:-60px;
+	top:20px;
+	width:60px;
+}
+
+.dsg-button-text{
+	display:none;
+	text-indent:-9999px;
+}
+.dsg-button{
+  display:inline;
+	padding:0px 4px;
+}
+
+
+.dsg-icon{
+  display:inline-block;
+	width:20px;
+	height:20px;
+	background-repeat:no-repeat;
+}
+
+.dsg-button:hover .dsg-icon{
+	position:relative;
+	left:1px;
+	top:1px;
+}
+.dsg-hide-text .dsg-button span{
+	display:none;
+}
+
+.dsg-button.picasa_dl_link .dsg-icon{
+	background-position:0px -120px;
+}
+.dsg-button.picasa_dl_link.dsg-button-checked .dsg-icon{
+	background-position:-36px -120px;
+}
+
+.dsg-button.picasa_page_link .dsg-icon{
+	background-position:-18px -120px;
+}
+
+.dsg-button.raw_image_link .dsg-icon{
+	background-position:-18px -20px;
+}
+
+.dsg-button.youtube_dl_link .dsg-icon{
+	background-position:0px -140px;
+}
+.dsg-button.youtube_dl_link.dsg-button-checked .dsg-icon{
+	background-position:-36px -140px;
+}
+
+.dsg-button.raw_image_download .dsg-icon{
+	background-position:0px -160px;
+}
+.dsg-button.raw_image_download.dsg-button-checked .dsg-icon{
+	background-position:-36px -160px;
+}
+
+.dsg-button.raw_image_download_all .dsg-icon{
+	background-position:0px -180px;
+}
+.dsg-button.raw_image_download_all.dsg-button-checked .dsg-icon{
+	background-position:-36px -180px;
+}
+
