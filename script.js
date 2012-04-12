@@ -126,8 +126,9 @@ var PicasaEarth = function(){
       var post_id = $(this).attr('id');
       $(this).addClass('dsg-post-checked');
 
-      var ele_content = $(this).find('div[data-content-url]');
-      var content_url = ele_content.attr('data-content-url');
+      var img_warp = $(this).find("a[target='blank_']");
+      var ele_content = $(this).find("a[target='blank_']").find("img");
+      var content_url = img_warp.attr('href');
       //console.log(ele_content);
 
       // 最初のコンテンツだけ確認して、必要なボタンの種類を分類する
@@ -138,8 +139,10 @@ var PicasaEarth = function(){
 
      var ele_option = ele_post_panels
       .children('div:nth-child(1)')
-      .children('div:nth-child(2)')
-      .children('div:nth-child(2)')
+      .children('div:nth-child(1)')
+      .children('div:last')
+      .children("div:nth-child(3)")
+      .after("<div style='float: left;'></div>").next()
       .addClass('dsg-option');
 /*
      var ele_option = ele_content_panel_parent
@@ -152,7 +155,6 @@ var PicasaEarth = function(){
         .addClass('dsg-content-parent');
      ele_option
         .append(that.ele_buttons);
-
 
       if (!content_url){
         return true;
@@ -378,7 +380,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
   that.getRawImageDownloadURLs = function(ele_content){
     var urls = [];
     ele_content.each(function(){
-      var ele_img = $(this).find('img');
+      var ele_img = $(this);
       var img_url = ele_img.attr('src');
       var raw_download_url = img_url;
       if(!img_url){
