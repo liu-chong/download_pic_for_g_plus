@@ -13,5 +13,5 @@
    "name": "Download Pic for g_plus",
    "permissions": [ "tabs" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.4.1.2"
+   "version": "1.4.1.3"
 }
