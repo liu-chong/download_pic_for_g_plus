@@ -257,7 +257,6 @@ ul.dsg-dl-list a:hover img.big{
 }
 .dsg-buttons:before{
 	display:inline;
-	content:" - ";
 }
 
 .dsg-content-parent .dsg-buttons.dsg-buttons-side{
