@@ -142,7 +142,7 @@ var PicasaEarth = function(){
       .children('div:nth-child(1)')
       .children('div:last')
       .children("div:nth-child(3)")
-      .after("<div style='float: left;'></div>").next()
+      .after("<div style='float: left; margin-top: 12px;'></div>").next()
       .addClass('dsg-option');
 /*
      var ele_option = ele_content_panel_parent
