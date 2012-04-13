@@ -369,7 +369,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
       
       var raw_img_url = img_url;
       raw_img_url = raw_img_url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/s0/');
-      raw_img_url = raw_img_url.replace(/\/w[0-9]{2}-h[0-9]{2}-p\//, '/s0/');
+      raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/s0/');
       urls.push(raw_img_url);
     });
     urls = that.getUniqueArray(urls);
@@ -387,7 +387,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
         return true;
       }
       raw_download_url = raw_download_url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/d/');
-      raw_download_url = raw_download_url.replace(/\/w[0-9]{2}-h[0-9]{2}-p\//, '/d/');
+      raw_download_url = raw_download_url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/d/');
 /*
         // 正規表現を使わないパターン
         var uri_dirs = url.split('/');
