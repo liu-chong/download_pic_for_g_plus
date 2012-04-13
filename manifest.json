@@ -10,9 +10,8 @@
    "icons": {
       "128": "icon.png"
    },
-   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCyOJ7bHUtASZd0q3ChyUGTbj0ar+m5C0LSSmw3zUQwx3v1rPbm4S/CWqbh2FmgAGbnDCUIMrZKdruDkhXOy1s3vU8QLMeMTbuQNw6YbDcISpeDPjYzY0uXM/81437/fyZexy6xm0qQcsSeMna1bYtVCLdlZ9NlOBuizDZFFRiE/wIDAQAB",
-   "name": "DownloadSupport for Google+",
+   "name": "Download Pic for g_plus",
    "permissions": [ "tabs" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.4.1.0"
+   "version": "1.4.1.2"
 }
