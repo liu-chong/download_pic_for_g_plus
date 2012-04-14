@@ -126,9 +126,9 @@ var PicasaEarth = function(){
       var post_id = $(this).attr('id');
       $(this).addClass('dsg-post-checked');
 
-      var img_warp = $(this).find("a.uaGLLd");
-      var ele_content = img_warp.find("img");
-      var content_url = img_warp.attr('href');
+      var imgs_wrap = $(this).find("a.uaGLLd");
+      var ele_content = imgs_wrap.find("img");
+      var content_url = imgs_wrap.attr('href');
       //alert("!!"); console.log(ele_content);
 
       // 最初のコンテンツだけ確認して、必要なボタンの種類を分類する
@@ -188,7 +188,7 @@ var PicasaEarth = function(){
             text_ja : 'Picasaアルバムをダウンロードする',
             text_en : 'Download picasa album',
             clickEvent : function(){
-              that.downloadPicasaAlbum(ele_content)
+              that.downloadPicasaAlbum(imgs_wrap)
             }
           });
 
@@ -220,7 +220,7 @@ var PicasaEarth = function(){
             text_ja : '元サイズの画像を全てダウンロードする',
             text_en : 'Download all raw images',
             clickEvent : function(){
-              that.downloadPicasaRSSImages(ele_content);
+              that.downloadPicasaRSSImages(imgs_wrap);
             }
           });
         }
@@ -305,8 +305,9 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
     var urls = [];
 
     ele_content.each(function(){
-      var url = ele_content.attr('data-content-url');
+      var url = ele_content.attr('href');
       var data = that.getPicasaAlbumData(url);
+      console.log(url); console.log(data);
 
       var picasa_dl_url = 'picasa://downloadfeed/'
          + '?url=https://picasaweb.google.com/data/feed/back_compat'
@@ -322,8 +323,9 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
 
   // PicasaRSSから通常ダウンロード用のURLを取得する
   that.getPicasaRSSURL = function(ele_content){
-    var url = ele_content.attr('data-content-url');
+    var url = ele_content.attr('href');
     var data = that.getPicasaAlbumData(url);
+    console.log(url); console.log(data);
 
     var picasa_rss_url = 'https://picasaweb.google.com/data/feed/base'
        + '/user/' + data.user_id + '/albumid/' + data.album_id;
