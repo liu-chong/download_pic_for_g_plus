@@ -126,10 +126,10 @@ var PicasaEarth = function(){
       var post_id = $(this).attr('id');
       $(this).addClass('dsg-post-checked');
 
-      var img_warp = $(this).find("a[target='blank_']");
-      var ele_content = $(this).find("a[target='blank_']").find("img");
+      var img_warp = $(this).find("a.uaGLLd");
+      var ele_content = img_warp.find("img");
       var content_url = img_warp.attr('href');
-      //console.log(ele_content);
+      //alert("!!"); console.log(ele_content);
 
       // 最初のコンテンツだけ確認して、必要なボタンの種類を分類する
       var ele_content_panel_parent = ele_content.parent().parent();
@@ -153,8 +153,6 @@ var PicasaEarth = function(){
 
      ele_content_panel_parent
         .addClass('dsg-content-parent');
-     ele_option
-        .append(that.ele_buttons);
 
       if (!content_url){
         return true;
@@ -237,6 +235,9 @@ var PicasaEarth = function(){
           }
         });
       }
+
+      // alert("!!!"); console.log(that.ele_buttons);
+      ele_option.append(that.ele_buttons);
     });
     return false;
   }
@@ -833,7 +834,6 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
 
 $(function(){
   var picasa_earth = new PicasaEarth();
-
   // ナビゲーションボタンの配置
 /*
   var ele_nav = $('[role="navigation"]');
