@@ -141,7 +141,7 @@ var PicasaEarth = function(){
       .children('div:nth-child(1)')
       .children('div:nth-child(1)')
       .children('div:last')
-      .children("div:nth-child(3)")
+      .children("div.uBbfTb")
       .after("<div style='float: left; margin-top: 12px;'></div>").next()
       .addClass('dsg-option');
 /*
