@@ -1,7 +1,7 @@
 {
    "content_scripts": [ {
       "css": [ "style.css" ],
-      "js": [ "jquery.js", "script.js" ],
+      "js": [ "jquery.js", "jquery-ui-1.8.20.custom.min.js", "script.js" ],
       "matches": [ "http://plus.google.com/*", "https://plus.google.com/*", "http://www.youtube.com/*", "https://www.youtube.com/*", "http://picasaweb.google.com/*", "https://picasaweb.google.com/*" ],
       "run_at": "document_idle"
    } ],

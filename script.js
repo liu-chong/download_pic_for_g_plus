@@ -336,6 +336,63 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
     return picasa_rss_url;
   }
 
+  that.download_list = [];
+  that.download_list_count = $("<div id='dsg-download_list_count'>");
+  that.download_list_count_update = function() {
+    that.download_list_count.find("span")
+      .text("Downloading: " + that.download_list.length + ", ");
+  };
+  that.download_list_add = function(url) {
+    if (that.download_list.indexOf(url) == -1)
+      that.download_list.push(url);
+    that.download_list_count_update();
+  };
+  that.download_list_proc = function() {
+    var url = that.download_list.shift();
+    if (url) $("body").append("<iframe src='" + url + "' " +
+        "style='position: absolute; top: -999px; left: -999px;'></iframe>");
+    that.download_list_count_update();
+  };
+  that.download_list_proc_intv = null;
+  that.download_list_proc_start = function() {
+    that.download_list_proc_intv =
+      window.setInterval(that.download_list_proc, 618);
+  };
+  that.download_list_proc_pause = function() {
+    window.clearInterval(that.download_list_proc_intv);
+  };
+  that.download_list_proc_ctrl = function() {
+    if (that.download_list_proc_ctrl_btn.attr("cmd") == "pause") {
+      that.download_list_proc_pause();
+      that.download_list_proc_ctrl_btn
+            .attr("title", "Resume download")
+            .attr("cmd", "resume").text("Resume");
+    } else {
+      that.download_list_proc_start();
+      that.download_list_proc_ctrl_btn
+            .attr("title", "Pause download")
+            .attr("cmd", "pause").text("Pause");
+    }
+  };
+  that.download_list_proc_ctrl_btn = $("<a id='dsg-download_ctrl_btn'>");
+  that.download_list_init = function() {
+    that.download_list_proc_ctrl_btn
+          .attr("title", "Pause download")
+          .attr("href", "javascript:void(0);").attr("cmd", "pause")
+          .text("Pause").click(that.download_list_proc_ctrl);
+    that.download_list_count
+      .attr("title", "Download Support download list count")
+      .css({
+        padding: "5px", borderRadius: "3px", cursor: "default",
+        background: "-webkit-linear-gradient(#F1F1F1,#E0E0E0)",
+        position: "fixed", left: "69%", top: "3px", zIndex: 999
+      }).draggable()
+      .append("<span>")
+      .append(that.download_list_proc_ctrl_btn);
+
+    $("body").append(that.download_list_count);
+    that.download_list_proc_start();
+  };
 
   // PicasaRSSから画像をダウンロードする
   that.downloadPicasaRSSImages = function(ele_content){
@@ -343,17 +400,12 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
 
     var ele_picasa = $('<div>').text('picasa RSS DOM');
     $.ajax({
-      type : 'GET',
-      url : url,
-      data : '',
-      dataType : 'xml',
-      success : function(xml){
+      type: 'GET', url: url, dataType: 'xml',
+      success: function(xml){
         var ele_img_urls = $(xml).find('entry');
         ele_img_urls.each(function(i){
           var url = $("img", $(this).children("summary").text()).attr("src");
-          url = that.getRawImageDownloadURL(url);
-          $("body").append("<iframe src='" + url + "' " +
-            "style='position: absolute; top: -999px; left: -999px;'></iframe>");
+          that.download_list_add(that.getRawImageDownloadURL(url));
         });
       }
     });
@@ -783,10 +835,8 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
 
   // 新規窓を開かずにダウンロード用URLへアクセスする
   that.openWindowsHidden = function(urls){
-    for(var i=0;i<urls.length;i++){
-      console.log('download...' + urls[i]);
-      window.open(urls[i], 'dsg-dl-window' + i);
-    }
+    for(var i=0;i<urls.length;i++)
+      that.download_list_add(urls[i]);
   }
 
 　// クエリ文字列をハッシュに変換する
@@ -896,4 +946,6 @@ $(function(){
 		}
   });
 
+  console.log("show download list count");
+  picasa_earth.download_list_init();
 });
