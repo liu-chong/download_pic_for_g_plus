@@ -333,31 +333,40 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
     return picasa_rss_url;
   }
 
-
   // PicasaRSSから画像をダウンロードする
   that.downloadPicasaRSSImages = function(ele_content){
     var url = that.getPicasaRSSURL(ele_content);
 
     var ele_picasa = $('<div>').text('picasa RSS DOM');
     $.ajax({
-      type : 'GET',
-      url : url,
-      data : 'alt=rss&kind=photo',
-      dataType : 'xml',
+      type: 'GET', url: url, dataType: 'xml',
       success : function(xml){
-        console.log(xml);
-        var ele_img_urls = $(xml).find('enclosure');
-        console.log(ele_img_urls);
+        var ele_img_urls = $(xml).find('entry');
         ele_img_urls.each(function(i){
-          var img_url = $(this).attr('url');
-          var uri_dirs = img_url.split('/');
-          var file_name = uri_dirs.pop();
-          var raw_download_url = uri_dirs.join('/') + '/d/' + file_name;
-          console.dir('download...' + raw_download_url);
-          window.open(raw_download_url, 'dl_window' + i);
+          var url = $("img", $(this).children("summary").text()).attr("src");
+          url = that.getRawImageDownloadURL(url);
+          console.log(url);
+          that.download_use_link(url);
         });
       }
     });
+  }
+
+  that.download_use_link = function(url) {
+    var mouse_m_evt = document.createEvent("MouseEvents");
+    mouse_m_evt.initMouseEvent("click", true, true, window,
+                        0, 0, 0, 0, 0, false, false, false, false, 1, null);
+    var id = "dsg-download_link_" + new Date().getTime();
+    var download_link = $("<a id='" + id + "'>").attr("href", url);
+    $("body").append(download_link);
+    document.getElementById(id).dispatchEvent(mouse_m_evt);
+  };
+
+  that.getRawImageDownloadURL = function(url) {
+    url = url.replace(/\/[swh][0-9]+\//i, '/d/');
+    url = url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/d/');
+    url = url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/d/');
+    return url;
   }
 
   // 元サイズ画像のURLを取得する (複数)
@@ -389,8 +398,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
       if(!img_url){
         return true;
       }
-      raw_download_url = raw_download_url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/d/');
-      raw_download_url = raw_download_url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/d/');
+      raw_download_url = that.getRawImageDownloadURL(img_url);
 /*
         // 正規表現を使わないパターン
         var uri_dirs = url.split('/');
