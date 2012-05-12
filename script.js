@@ -787,8 +787,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
   // 新規窓を開かずにダウンロード用URLへアクセスする
   that.openWindowsHidden = function(urls){
     for(var i=0;i<urls.length;i++){
-      console.log('download...' + urls[i]);
-      window.open(urls[i], 'dsg-dl-window' + i);
+      that.download_use_link(urls[i]);
     }
   }
 
