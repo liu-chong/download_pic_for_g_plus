@@ -126,7 +126,7 @@ var PicasaEarth = function(){
       var post_id = $(this).attr('id');
       $(this).addClass('dsg-post-checked');
 
-      var imgs_wrap = $(this).find("a.cn");
+      var imgs_wrap = $(this).find("a.Mn");
       var ele_content = imgs_wrap.find("img");
       var content_url = imgs_wrap.attr('href');
       //alert("!!"); console.log(ele_content);
@@ -141,7 +141,7 @@ var PicasaEarth = function(){
       .children('div:nth-child(1)')
       .children('div:nth-child(1)')
       .children('div:last')
-      .children("div.a-f-e.Tj.Kp:last")
+      .children("div.a-f-e.dk.rp:last")
       .after("<div style='float: left; margin-top: 12px;'></div>").next()
       .addClass('dsg-option');
 /*
