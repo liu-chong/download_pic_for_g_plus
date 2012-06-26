@@ -13,5 +13,5 @@
    "name": "Download Support",
    "permissions": [ "tabs" ],
    "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.4.2.3"
+   "version": "1.4.2.4"
 }
