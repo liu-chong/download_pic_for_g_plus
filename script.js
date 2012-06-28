@@ -126,10 +126,12 @@ var PicasaEarth = function(){
       var post_id = $(this).attr('id');
       $(this).addClass('dsg-post-checked');
 
-      var imgs_wrap = $(this).find("a.Mn");
+      var imgs_wrap = $(this).find("a.Mn").length ?
+            $(this).find("a.Mn") :
+            $(this).find("div.Yj.Fg.FB"); // img on event
       var ele_content = imgs_wrap.find("img");
-      var content_url = imgs_wrap.attr('href');
-      //alert("!!"); console.log(ele_content);
+      var content_url = imgs_wrap.attr('href') || ele_content.attr("src");
+      // console.log(ele_content); console.log(content_url);
 
       // 最初のコンテンツだけ確認して、必要なボタンの種類を分類する
       var ele_content_panel_parent = ele_content.parent().parent();
@@ -137,13 +139,17 @@ var PicasaEarth = function(){
         .addClass('dsg-buttons')
 //        .addClass('dsg-buttons-side');
 
-     var ele_option = ele_post_panels
-      .children('div:nth-child(1)')
-      .children('div:nth-child(1)')
-      .children('div:last')
-      .children("div.a-f-e.dk.rp:last")
-      .after("<div style='float: left; margin-top: 12px;'></div>").next()
-      .addClass('dsg-option');
+      var btns_row = ele_post_panels
+            .children('div:nth-child(1)')
+            .children('div:nth-child(1)')
+            .children('div:last');
+      var previous_btn = btns_row.children("div.a-f-e.dk.rp").length ?
+            btns_row.children("div.a-f-e.dk.rp") :
+            btns_row.children("div.esw.eswd.Hf.Od"); // img on event
+      var ele_option = previous_btn
+            .after("<div style='float: left;'></div>").next()
+            .addClass('dsg-option')
+            .css({ marginTop: ((btns_row.height() - 18) / 2) + "px" });
 /*
      var ele_option = ele_content_panel_parent
       .parent()
@@ -178,8 +184,7 @@ var PicasaEarth = function(){
 */
         //return true;
 
-      } else if(content_url.match(/\/\/(plus\.google\.com\/photos|picasaweb\.google\.com)\//)){
-
+      } else if(content_url.match(/\/\/(plus\.google\.com\/photos|picasaweb\.google\.com)\/|lh\d\.googleusercontent\.com\//)){
 
         if(content_url.match(/\/\/plus\.google\.com\/photos\//)){
           that.addButton({
