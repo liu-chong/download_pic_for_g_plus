@@ -848,59 +848,11 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
 
 $(function(){
   var picasa_earth = new PicasaEarth();
-  // ナビゲーションボタンの配置
-/*
-  var ele_nav = $('[role="navigation"]');
-  var a = ele_nav.children('a:last-child').clone();
-  a.attr('href', '#')
-    .attr('aria-label', 'Download Images')
-*/
-  var nav_a = $('<a>')
-    .addClass('dsg-nav-switch')
-    .attr('title', 'Download Images');
-
-  // Chrome用 (他ブラウザではbase64等利用)
-  var icon_url = chrome.extension.getURL('nav_download_images.png');
-  var icon_css = 'url(' + icon_url + ')';
-  nav_a.css({
-    backgroundImage : icon_css
-  });
-
-  $(document).on('click', '.dsg-nav-switch', function(){
-      picasa_earth.showDialog();
-      return false;
-    });
-
-  var nav_title = $('<div>')
-    .addClass('dsg-nav-title')
-    .text('DownloadSupport');
-  var nav_wrap = $('<div>')
-   .addClass('dsg-nav');
-  
-  nav_wrap.append(nav_title);
-  nav_wrap.append(nav_a);
-  $('#content div[guidedhelpid="social-pane"]').append(nav_wrap.clone());
-
-  //forUserPage
-  if(localStorage.getItem('dsg-show-dl-switch') === 'true'){
-    var nav_wrap_user = nav_a.clone().addClass('dsg-nav-switch-user');
-    $('#contentPane').prepend(nav_wrap_user);
-  }
-
 
   // 各投稿にマウスオーバーで起動するイベントを用意
-  $('#contentPane').on('mouseover', selecter.post_panel, function(){
-    $(this).not('.dsg-post-checked').each(function(){
-      picasa_earth.addButtons($(this));
-    });
+  $('#contentPane').on('mouseover', selecter.post_panel, function() {
+    picasa_earth.addButtons($(this));
+  }).on('click', selecter.post_panel, function() {
+    picasa_earth.addButtons($(this));
   });
-
-  // キーボード操作 
-　// Esc でフロート窓「確認ダイアログ」を閉じる
-  $('body').keydown(function (e) {
-		if (e.which === 27){
-      picasa_earth.hideDialog();
-		}
-  });
-
 });
