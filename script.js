@@ -218,18 +218,6 @@ var PicasaEarth = function(){
             }
           });
 
-        if(ele_content.length>6){
-          that.addButton({
-            class : 'raw_image_download_all',
-            storage_key : 'dsg-show-dl-images-all',
-            text_ja : '元サイズの画像を全てダウンロードする',
-            text_en : 'Download all raw images',
-            clickEvent : function(){
-              that.downloadPicasaRSSImages(imgs_wrap);
-            }
-          });
-        }
-
         that.addButton({
           class : 'raw_image_link',
             storage_key : 'dsg-show-open-images',
@@ -330,7 +318,6 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
   that.getPicasaRSSURL = function(ele_content){
     var url = ele_content.attr('href');
     var data = that.getPicasaAlbumData(url);
-    console.log(url); console.log(data);
 
     var picasa_rss_url = 'https://picasaweb.google.com/data/feed/base'
        + '/user/' + data.user_id + '/albumid/' + data.album_id;
@@ -350,7 +337,6 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
         ele_img_urls.each(function(i){
           var url = $("img", $(this).children("summary").text()).attr("src");
           url = that.getRawImageDownloadURL(url);
-          console.log(url);
           that.download_use_link(url);
         });
       }
@@ -843,13 +829,9 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
 }
 
 
-
-
-
 $(function(){
   var picasa_earth = new PicasaEarth();
 
-  // 各投稿にマウスオーバーで起動するイベントを用意
   $('#contentPane').on('mouseover', selecter.post_panel, function() {
     picasa_earth.addButtons($(this));
   }).on('click', selecter.post_panel, function() {
