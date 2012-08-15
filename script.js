@@ -218,6 +218,18 @@ var PicasaEarth = function(){
             }
           });
 
+        if(ele_content.length>6){
+           that.addButton({
+             class : 'raw_image_download_all',
+             storage_key : 'dsg-show-dl-images-all',
+             text_ja : '元サイズの画像を全てダウンロードする',
+             text_en : 'Download all raw images',
+             clickEvent : function(){
+               that.downloadPicasaRSSImages(imgs_wrap);
+             }
+           });
+        }
+
         that.addButton({
           class : 'raw_image_link',
             storage_key : 'dsg-show-open-images',
@@ -300,7 +312,6 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
     ele_content.each(function(){
       var url = ele_content.attr('href');
       var data = that.getPicasaAlbumData(url);
-      console.log(url); console.log(data);
 
       var picasa_dl_url = 'picasa://downloadfeed/'
          + '?url=https://picasaweb.google.com/data/feed/back_compat'
@@ -334,14 +345,28 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
       type: 'GET', url: url, dataType: 'xml',
       success : function(xml){
         var ele_img_urls = $(xml).find('entry');
+        var urls = [];
         ele_img_urls.each(function(i){
           var url = $("img", $(this).children("summary").text()).attr("src");
-          url = that.getRawImageDownloadURL(url);
-          that.download_use_link(url);
+          urls.push(that.getRawImageDownloadURL(url));
         });
+        that.download_all_use_link(urls);
       }
     });
   }
+
+  that.download_all_use_link = function(urls, count) {
+    count = count ? count : 1;
+    var max_t = count == 1 ? 27 : 1;
+    var speed = count == 1 ? 1000 : 5000;
+    for (var i = 0; i < max_t; i++) {
+      var url = urls.pop();
+      if (!url) return ;
+      that.download_use_link(url);
+    }
+    window.setTimeout(function() {
+        that.download_all_use_link(urls, count++) }, max_t * speed);
+  };
 
   that.download_use_link = function(url) {
     var mouse_m_evt = document.createEvent("MouseEvents");
@@ -350,7 +375,8 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
     var id = "dsg-download_link_" + new Date().getTime();
     var download_link = $("<a id='" + id + "'>").attr("href", url);
     $("body").append(download_link);
-    document.getElementById(id).dispatchEvent(mouse_m_evt);
+    window.setTimeout(function() {
+        document.getElementById(id).dispatchEvent(mouse_m_evt); }, 200);
   };
 
   that.getRawImageDownloadURL = function(url) {
@@ -399,7 +425,6 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
 */
       urls.push(raw_download_url);
     });
-    console.log(urls);
 
     urls = that.getUniqueArray(urls);
     return urls;
