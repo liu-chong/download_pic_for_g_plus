@@ -143,8 +143,8 @@ var PicasaEarth = function(){
             .children('div:nth-child(1)')
             .children('div:nth-child(1)')
             .children('div:last');
-      var previous_btn = btns_row.children("div.a-f-e.dk.rp").length ?
-            btns_row.children("div.a-f-e.dk.rp") :
+      var previous_btn = btns_row.children("div.dk.rp").length ?
+            btns_row.children("div.dk.rp") :
             btns_row.children("div.esw.eswd.Hf.Od"); // img on event
       var ele_option = previous_btn
             .after("<div style='float: left;'></div>").next()
