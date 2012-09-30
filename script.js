@@ -143,9 +143,16 @@ var PicasaEarth = function(){
             .children('div:nth-child(1)')
             .children('div:nth-child(1)')
             .children('div:last');
-      var previous_btn = btns_row.children("div.dk.rp").length ?
-            btns_row.children("div.dk.rp") :
-            btns_row.children("div.esw.eswd.Hf.Od"); // img on event
+      var previous_btn = null;
+      do {
+        previous_btn = btns_row.children("div.dk.rp");
+        if (previous_btn.length) break;
+
+        previous_btn = btns_row.children("div.dk.Pk");
+        if (previous_btn.length) break;
+
+        previous_btn = btns_row.children("div.esw.Hf.Od");
+      } while (false);
       var ele_option = previous_btn
             .after("<div style='float: left;'></div>").next()
             .addClass('dsg-option')
