@@ -1,17 +1,22 @@
 {
+   "name": "Download Support",
+   "version": "1.4.3.0",
+   "manifest_version": 2,
+
+   "description": "__MSG_extensiondescription__",
+   "icons": { "128": "icon.png" },
+   "default_locale": "en",
+
    "content_scripts": [ {
+      "matches": [ "http://plus.google.com/*", "https://plus.google.com/*",
+                   "http://www.youtube.com/*", "https://www.youtube.com/*",
+                   "http://picasaweb.google.com/*",
+                   "https://picasaweb.google.com/*" ],
       "css": [ "style.css" ],
       "js": [ "jquery.js", "script.js" ],
-      "matches": [ "http://plus.google.com/*", "https://plus.google.com/*", "http://www.youtube.com/*", "https://www.youtube.com/*", "http://picasaweb.google.com/*", "https://picasaweb.google.com/*" ],
-      "run_at": "document_idle"
-   } ],
-   "default_locale": "en",
-   "description": "__MSG_extensiondescription__",
-   "icons": {
-      "128": "icon.png"
-   },
-   "name": "Download Support",
+      "run_at": "document_idle" } ],
+
    "permissions": [ "tabs" ],
-   "update_url": "http://clients2.google.com/service/update2/crx",
-   "version": "1.4.2.9"
+   "web_accessible_resources": [ "icon_splite.png" ],
+   "update_url": "http://clients2.google.com/service/update2/crx"
 }

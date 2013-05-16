@@ -9,6 +9,7 @@ DOM sample
 <div class="H-y-qa H-y-pe-ea c-m-l H-y" data-content-url="https://plus.google.com/photos/110133832564364235950/albums/5642050894302711521/5642050896281094578" data-content-type="image/jpeg" style="" aria-expanded="false"><img src="//lh4.googleusercontent.com/-fIz0IMoM0VY/TkyXZbWCSbI/AAAAAAAAP7s/IcZA3rpMmnc/h301/%25E6%259C%25AA%25E5%2591%25BD%25E5%2590%258D.jpg" style="display:block;"></div>
 
 */
+
 var selecter = {
   post_panel : '[id^="update-"]',
   plus_one_button : '[id^="po-"]'
@@ -139,10 +140,7 @@ var PicasaEarth = function(){
         .addClass('dsg-buttons')
 //        .addClass('dsg-buttons-side');
 
-      var btns_row = ele_post_panels
-            .children('div:nth-child(1)')
-            .children('div:nth-child(1)')
-            .children('div:last');
+      var btns_row = ele_post_panels.find('div.LI');
       var previous_btn = null;
       do {
         previous_btn = btns_row.children("div.dk.rp");
@@ -153,6 +151,7 @@ var PicasaEarth = function(){
 
         previous_btn = btns_row.children("div.esw.Hf.Od");
       } while (false);
+      console.log(previous_btn);
       var ele_option = previous_btn
             .after("<div style='float: left;'></div>").next()
             .addClass('dsg-option')
@@ -390,6 +389,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
     url = url.replace(/\/[swh][0-9]+\//i, '/d/');
     url = url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/d/');
     url = url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/d/');
+    url = url.replace(/\/w[0-9]+-h[0-9]+-o\//, '/d/');
     return url;
   }
 
@@ -406,6 +406,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
       var raw_img_url = img_url;
       raw_img_url = raw_img_url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/s0/');
       raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/s0/');
+      raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-o\//, '/s0/');
       urls.push(raw_img_url);
     });
     urls = that.getUniqueArray(urls);
