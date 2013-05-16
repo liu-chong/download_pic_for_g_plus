@@ -387,6 +387,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
 
   that.getRawImageDownloadURL = function(url) {
     url = url.replace(/\/[swh][0-9]+\//i, '/d/');
+    url = url.replace(/\/[swh][0-9]+-o\//i, '/d/');
     url = url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/d/');
     url = url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/d/');
     url = url.replace(/\/w[0-9]+-h[0-9]+-o\//, '/d/');
