@@ -3,7 +3,7 @@
    "version": "1.4.3.2",
    "manifest_version": 2,
 
-   "description": "__MSG_extensiondescription__",
+   "description": "Download Picasa pictures on the stream of Google+.",
    "icons": { "128": "icon.png" },
    "default_locale": "en",
 
