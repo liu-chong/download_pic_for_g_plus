@@ -166,6 +166,7 @@ var PicasaEarth = function(){
      ele_content_panel_parent
         .addClass('dsg-content-parent');
 
+      console.log("!!! content_url: " + content_url);
       if (!content_url){
         return true;
 
@@ -190,9 +191,11 @@ var PicasaEarth = function(){
 */
         //return true;
 
-      } else if(content_url.match(/\/\/(plus\.google\.com\/photos|picasaweb\.google\.com)\/|lh\d\.googleusercontent\.com\//)){
+      } else if(content_url.match(/\/\/(plus\.google\.com\/photos|picasaweb\.google\.com)\/|lh\d\.googleusercontent\.com\//) ||
+          content_url.match(/\/photos\/\d+\/albums\//)){
 
-        if(content_url.match(/\/\/plus\.google\.com\/photos\//)){
+        if(content_url.match(/\/\/plus\.google\.com\/photos\//) ||
+            content_url.match(/\/photos\/\d+\/albums\//)){
           that.addButton({
             class : 'picasa_dl_link',
             storage_key : 'dsg-show-dl-picasa',
@@ -202,6 +205,7 @@ var PicasaEarth = function(){
               that.downloadPicasaAlbum(imgs_wrap)
             }
           });
+          console.log("!!! picasa_dl_link!");
 
         } else {
           that.addButton({
@@ -407,6 +411,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
       
       var raw_img_url = img_url;
       raw_img_url = raw_img_url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/s0/');
+      raw_img_url = raw_img_url.replace(/\/[swh][0-9]+-o\//i, '/s0/');
       raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/s0/');
       raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-o\//, '/s0/');
       raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-p-o\//, '/s0/');
