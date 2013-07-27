@@ -132,6 +132,8 @@ var PicasaEarth = function(){
             $(this).find("div.Yj.Fg.FB"); // img on event
       var ele_content = imgs_wrap.find("img");
       var content_url = imgs_wrap.attr('href') || ele_content.attr("src");
+      if (!/\/photos\/\d+\/albums\//.test(content_url))
+        content_url = ele_content.attr("src");
       // console.log(ele_content); console.log(content_url);
 
       // 最初のコンテンツだけ確認して、必要なボタンの種類を分類する
@@ -141,17 +143,12 @@ var PicasaEarth = function(){
 //        .addClass('dsg-buttons-side');
 
       var btns_row = ele_post_panels.find('div.LI');
-      var previous_btn = null;
-      do {
+      var previous_btn = null; do {
         previous_btn = btns_row.children("div.dk.rp");
         if (previous_btn.length) break;
-
         previous_btn = btns_row.children("div.dk.Pk");
         if (previous_btn.length) break;
-
-        previous_btn = btns_row.children("div.esw.Hf.Od");
-      } while (false);
-      console.log(previous_btn);
+        previous_btn = btns_row.children("div.esw.Hf.Od"); } while (false);
       var ele_option = previous_btn
             .after("<div style='float: left;'></div>").next()
             .addClass('dsg-option')
@@ -166,7 +163,6 @@ var PicasaEarth = function(){
      ele_content_panel_parent
         .addClass('dsg-content-parent');
 
-      console.log("!!! content_url: " + content_url);
       if (!content_url){
         return true;
 
