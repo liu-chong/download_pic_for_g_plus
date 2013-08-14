@@ -128,8 +128,9 @@ var PicasaEarth = function(){
       $(this).addClass('dsg-post-checked');
 
       var imgs_wrap = $(this).find("a.Mn").length ?
-            $(this).find("a.Mn") :
-            $(this).find("div.Yj.Fg.FB"); // img on event
+            $(this).find("a.Mn") : ($(this).find("div.LvkGu").length ?
+              $(this).find("div.LvkGu") :
+              $(this).find("div.Yj.Fg.FB")); // img on event
       var ele_content = imgs_wrap.find("img");
       var content_url = imgs_wrap.attr('href') || ele_content.attr("src");
       if (!/\/photos\/\d+\/albums\//.test(content_url))
@@ -387,7 +388,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
 
   that.getRawImageDownloadURL = function(url) {
     url = url.replace(/\/[swh][0-9]+\//i, '/d/');
-    url = url.replace(/\/[swh][0-9]+-o\//i, '/d/');
+    url = url.replace(/\/[swh][0-9]+-[op]\//i, '/d/');
     url = url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/d/');
     url = url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/d/');
     url = url.replace(/\/w[0-9]+-h[0-9]+-o\//, '/d/');
@@ -407,7 +408,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
       
       var raw_img_url = img_url;
       raw_img_url = raw_img_url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/s0/');
-      raw_img_url = raw_img_url.replace(/\/[swh][0-9]+-o\//i, '/s0/');
+      raw_img_url = raw_img_url.replace(/\/[swh][0-9]+-[op]\//i, '/s0/');
       raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/s0/');
       raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-o\//, '/s0/');
       raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-p-o\//, '/s0/');
