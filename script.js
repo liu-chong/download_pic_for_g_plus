@@ -127,8 +127,8 @@ var PicasaEarth = function(){
       var post_id = $(this).attr('id');
       $(this).addClass('dsg-post-checked');
 
-      var imgs_wrap = $(this).find("a.Tr").length ?
-            $(this).find("a.Tr") : ($(this).find("div.Bk").length ?
+      var imgs_wrap = $(this).find("a.Ks").length ?
+            $(this).find("a.Ks") : ($(this).find("div.Bk").length ?
               $(this).find("div.Bk") :
               $(this).find("div.Yj.Fg.FB")); // img on event
       var ele_content = imgs_wrap.find("img");
@@ -143,11 +143,11 @@ var PicasaEarth = function(){
         .addClass('dsg-buttons')
 //        .addClass('dsg-buttons-side');
 
-      var btns_row = ele_post_panels.find('div.Rg');
+      var btns_row = ele_post_panels.find('div.Qg');
       var previous_btn = null; do {
-        previous_btn = btns_row.children("div.Dg.Ct");
+        previous_btn = btns_row.children("div.Dg.Ut");
         if (previous_btn.length) break;
-        previous_btn = btns_row.children("div.fk.Dc");
+        previous_btn = btns_row.children("div.qk.Gc");
         if (previous_btn.length) break;
         previous_btn = btns_row.children("div.esw.Hf.Od"); } while (false);
       var ele_option = previous_btn
