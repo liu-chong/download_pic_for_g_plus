@@ -128,8 +128,8 @@ var PicasaEarth = function(){
       $(this).addClass('dsg-post-checked');
 
       var imgs_wrap = $(this).find("a.Ks").length ?
-            $(this).find("a.Ks") : ($(this).find("div.Bk").length ?
-              $(this).find("div.Bk") :
+            $(this).find("a.Ks") : ($(this).find("div.Oaa").length ?
+              $(this).find("div.Oaa") :
               $(this).find("div.Yj.Fg.FB")); // img on event
       var ele_content = imgs_wrap.find("img");
       var content_url = imgs_wrap.attr('href') || ele_content.attr("src");
