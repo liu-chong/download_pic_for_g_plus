@@ -123,14 +123,17 @@ var PicasaEarth = function(){
     }
 
     ele_post_panels.each(function(){
-      
-      var post_id = $(this).attr('id');
-      $(this).addClass('dsg-post-checked');
+      var th = $(this);
+      var post_id = th.attr('id');
+      th.addClass('dsg-post-checked');
 
-      var imgs_wrap = $(this).find("a.Ks").length ?
-            $(this).find("a.Ks") : ($(this).find("div.Oaa").length ?
-              $(this).find("div.Oaa") :
-              $(this).find("div.Yj.Fg.FB")); // img on event
+      var imgs_wrap = null; // img on event
+      [ "a.Ks", "div.Oaa", "div.mU", "div.Yj.Fg.FB" ].map(function(n) {
+        if (imgs_wrap != null) return ;
+        var doc = th.find(n);
+        if (doc.length) imgs_wrap = doc;
+      });
+      if (imgs_wrap == null) return ;
       var ele_content = imgs_wrap.find("img");
       var content_url = imgs_wrap.attr('href') || ele_content.attr("src");
       if (!/\/photos\/\d+\/albums\//.test(content_url))
