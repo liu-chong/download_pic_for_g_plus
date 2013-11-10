@@ -410,6 +410,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
       }
       
       var raw_img_url = img_url;
+      raw_img_url = raw_img_url.replace(/\/[swh][0-9]+\//i, '/s0/');
       raw_img_url = raw_img_url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/s0/');
       raw_img_url = raw_img_url.replace(/\/[swh][0-9]+-[op]\//i, '/s0/');
       raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/s0/');
