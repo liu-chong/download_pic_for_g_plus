@@ -396,6 +396,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
     url = url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/d/');
     url = url.replace(/\/w[0-9]+-h[0-9]+-o\//, '/d/');
     url = url.replace(/\/w[0-9]+-h[0-9]+-p-o\//, '/d/');
+    url = url.replace(/=w\d+-h\d+/, '=d');
     return url;
   }
 
@@ -416,6 +417,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
       raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/s0/');
       raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-o\//, '/s0/');
       raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-p-o\//, '/s0/');
+      raw_img_url = raw_img_url.replace(/=w\d+-h\d+/, '=s0');
       urls.push(raw_img_url);
     });
     urls = that.getUniqueArray(urls);
