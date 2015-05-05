@@ -1,6 +1,6 @@
 {
    "name": "Download Support",
-   "version": "1.4.4.3",
+   "version": "1.4.4.4",
    "manifest_version": 2,
 
    "description": "Download Picasa pictures on the stream of Google+.",
@@ -9,9 +9,7 @@
 
    "content_scripts": [ {
       "matches": [ "http://plus.google.com/*", "https://plus.google.com/*",
-                   "http://www.youtube.com/*", "https://www.youtube.com/*",
-                   "http://picasaweb.google.com/*",
-                   "https://picasaweb.google.com/*" ],
+            "http://picasaweb.google.com/*", "https://picasaweb.google.com/*" ],
       "css": [ "style.css" ],
       "js": [ "jquery.js", "script.js" ],
       "run_at": "document_idle" } ],
