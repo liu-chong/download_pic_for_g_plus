@@ -148,6 +148,8 @@ var PicasaEarth = function(){
 
       var btns_row = ele_post_panels.find('div.Qg');
       var previous_btn = null; do {
+        previous_btn = btns_row.children("div.Dg.eaGJ0e");
+        if (previous_btn.length) break;
         previous_btn = btns_row.children("div.Dg.Ut");
         if (previous_btn.length) break;
         previous_btn = btns_row.children("div.qk.Gc");
