@@ -381,9 +381,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
   };
 
   that.download_use_link = function(url) {
-    var mouse_m_evt = document.createEvent("MouseEvents");
-    mouse_m_evt.initMouseEvent("click", true, true, window,
-                        0, 0, 0, 0, 0, false, false, false, false, 1, null);
+    var mouse_m_evt = new MouseEvent("click", { ctrlKey: true });
     var id = "dsg-download_link_" + new Date().getTime();
     var download_link = $("<a id='" + id + "'>").attr("href", url);
     $("body").append(download_link);
