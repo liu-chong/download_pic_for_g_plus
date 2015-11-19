@@ -118,9 +118,12 @@ var PicasaEarth = function(){
       .find(selecter.post_panel)
       .not('.dsg-post-checked');
 
-    if(!ele_post_panels.length || ele_post_panels.hasClass('dsg-post-checked')){
+    if(!ele_post_panels.length || ele_post_panels.hasClass('dsg-post-checked'))
       return false;
-    }
+    var btns_row = ele_post_panels.find('.b0H8Oc');
+    var ele_option = btns_row.find(".R7Leqb");
+    if (ele_option.hasClass('dsg-option')) return false;
+    ele_option.addClass('dsg-option');
 
     ele_post_panels.each(function(){
       var th = $(this);
@@ -135,8 +138,6 @@ var PicasaEarth = function(){
         if (doc.length) imgs_wrap = doc;
       });
 
-      console.log(imgs_wrap);
-
       if (imgs_wrap == null) return ;
       var ele_content = imgs_wrap.find("img");
       var content_url = imgs_wrap.attr('href') || ele_content.attr("src");
@@ -150,23 +151,6 @@ var PicasaEarth = function(){
         .addClass('dsg-buttons')
 //        .addClass('dsg-buttons-side');
 
-      var btns_row = ele_post_panels.find('div.b0H8Oc');
-      var previous_btn = null; do {
-        previous_btn = btns_row.children(".YxJESd");
-        if (previous_btn.length) break;
-        previous_btn = btns_row.children("div.Dg.eaGJ0e");
-        if (previous_btn.length) break;
-        previous_btn = btns_row.children("div.Dg.Ut");
-        if (previous_btn.length) break;
-        previous_btn = btns_row.children("div.qk.Gc");
-        if (previous_btn.length) break;
-        previous_btn = btns_row.children("div.R7Leqb");
-        if (previous_btn.length) break;
-        previous_btn = btns_row.children("div.esw.Hf.Od"); } while (false);
-
-      console.log(previous_btn);
-
-      var ele_option = $(".R7Leqb").addClass('dsg-option');
 /*
      var ele_option = ele_content_panel_parent
       .parent()
@@ -398,12 +382,12 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
   };
 
   that.getRawImageDownloadURL = function(url) {
-    url = url.replace(/\/[swh][0-9]+\//i, '/d/');
-    url = url.replace(/\/[swh][0-9]+-[op]\//i, '/d/');
-    url = url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/d/');
-    url = url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/d/');
-    url = url.replace(/\/w[0-9]+-h[0-9]+-o\//, '/d/');
-    url = url.replace(/\/w[0-9]+-h[0-9]+-p-o\//, '/d/');
+    url = url.replace(/\/[swh]\d+\//i, '/d/');
+    url = url.replace(/\/[swh]\d+-[op]\//i, '/d/');
+    url = url.replace(/\/[swh]\d+-[swh]\d+\//i, '/d/');
+    url = url.replace(/\/w\d+-h\d+-p\//, '/d/');
+    url = url.replace(/\/w\d+-h\d+-o\//, '/d/');
+    url = url.replace(/\/w\d+-h\d+-[np]-[orw]+\//, '/d/');
     url = url.replace(/=w\d+-h\d+/, '=d');
     return url;
   }
@@ -413,19 +397,19 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
     var urls = [];
     ele_content.each(function(){
       var ele_img = $(this);
-      var img_url = "https:" + ele_img.attr('src');
-      if(!img_url){
-        return false;
-      }
+      var img_url = ele_img.attr('src');
+      if (!img_url) return false;
       
       var raw_img_url = img_url;
-      raw_img_url = raw_img_url.replace(/\/[swh][0-9]+\//i, '/s0/');
-      raw_img_url = raw_img_url.replace(/\/[swh][0-9]+-[swh][0-9]+\//i, '/s0/');
-      raw_img_url = raw_img_url.replace(/\/[swh][0-9]+-[op]\//i, '/s0/');
-      raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-p\//, '/s0/');
-      raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-o\//, '/s0/');
-      raw_img_url = raw_img_url.replace(/\/w[0-9]+-h[0-9]+-p-o\//, '/s0/');
+      console.log(raw_img_url);
+      raw_img_url = raw_img_url.replace(/\/[swh]\d+\//i, '/s0/');
+      raw_img_url = raw_img_url.replace(/\/[swh]\d+-[swh]\d+\//i, '/s0/');
+      raw_img_url = raw_img_url.replace(/\/[swh]\d+-[op]\//i, '/s0/');
+      raw_img_url = raw_img_url.replace(/\/w\d+-h\d+-p\//, '/s0/');
+      raw_img_url = raw_img_url.replace(/\/w\d+-h\d+-o\//, '/s0/');
+      raw_img_url = raw_img_url.replace(/\/w\d+-h\d+-[np]-[orw]+\//, '/s0/')
       raw_img_url = raw_img_url.replace(/=w\d+-h\d+/, '=s0');
+      console.log(raw_img_url);
       urls.push(raw_img_url);
     });
     urls = that.getUniqueArray(urls);
@@ -437,11 +421,9 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
     var urls = [];
     ele_content.each(function(){
       var ele_img = $(this);
-      var img_url = "http:" + ele_img.attr('src');
+      var img_url = ele_img.attr('src');
       var raw_download_url = img_url;
-      if(!img_url){
-        return true;
-      }
+      if(!img_url) return true;
       raw_download_url = that.getRawImageDownloadURL(img_url);
 /*
         // 正規表現を使わないパターン
