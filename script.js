@@ -114,7 +114,6 @@ var PicasaEarth = function(){
   // 各機能ボタンを追加する (ひたすらDOM操作)
   // マウスオーバーで起動し、記事内容にある画像・動画の有無・種類を確認する
   that.addButtons = function(ele_post_panels){
-    console.log("addButtons!!!");
     ele_post_panels = ele_post_panels || ele_contentPane
       .find(selecter.post_panel)
       .not('.dsg-post-checked');
@@ -390,6 +389,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
     url = url.replace(/\/w\d+-h\d+-.+\//, '/d/');
     url = url.replace(/\/w\d+-d-h\d+-.+\//, '/d/');
     url = url.replace(/=w\d+-h\d+/, '=d');
+    url = url.replace(/=s\d+-[op]-.+$/, '=d');
     return url;
   }
 
@@ -409,6 +409,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
       raw_img_url = raw_img_url.replace(/\/w\d+-h\d+-.+\//, '/s0/')
       raw_img_url = raw_img_url.replace(/\/w\d+-d-h\d+-.+\//, '/s0/')
       raw_img_url = raw_img_url.replace(/=w\d+-h\d+/, '=s0');
+      raw_img_url = raw_img_url.replace(/=s\d+-[op]-.+$/, '=s0');
       urls.push(raw_img_url);
     });
     urls = that.getUniqueArray(urls);

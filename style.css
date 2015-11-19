@@ -252,8 +252,8 @@ ul.dsg-dl-list a:hover img.big{
 */
 
 .dsg-buttons{
-	display:inline;
-	padding-left:8px;
+	display: inline-block;
+  margin-top: 8px;
 }
 .dsg-buttons:before{
 	display:inline;
