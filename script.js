@@ -11,7 +11,7 @@ DOM sample
 */
 
 var selecter = {
-  post_panel : '[id^="update-"]',
+  post_panel : 'div[data-iid]',
   plus_one_button : '[id^="po-"]'
 };
 
@@ -128,11 +128,15 @@ var PicasaEarth = function(){
       th.addClass('dsg-post-checked');
 
       var imgs_wrap = null; // img on event
-      [ "a.Ks", "div.Oaa", "div.mU", "div.Yj.Fg.FB" ].map(function(n) {
+      [ ".bldpQb", "a.Ks", "div.Oaa", "div.mU",
+          "div.Yj.Fg.FB" ].map(function(n) {
         if (imgs_wrap != null) return ;
         var doc = th.find(n);
         if (doc.length) imgs_wrap = doc;
       });
+
+      console.log(imgs_wrap);
+
       if (imgs_wrap == null) return ;
       var ele_content = imgs_wrap.find("img");
       var content_url = imgs_wrap.attr('href') || ele_content.attr("src");
@@ -146,19 +150,23 @@ var PicasaEarth = function(){
         .addClass('dsg-buttons')
 //        .addClass('dsg-buttons-side');
 
-      var btns_row = ele_post_panels.find('div.Qg');
+      var btns_row = ele_post_panels.find('div.b0H8Oc');
       var previous_btn = null; do {
+        previous_btn = btns_row.children(".YxJESd");
+        if (previous_btn.length) break;
         previous_btn = btns_row.children("div.Dg.eaGJ0e");
         if (previous_btn.length) break;
         previous_btn = btns_row.children("div.Dg.Ut");
         if (previous_btn.length) break;
         previous_btn = btns_row.children("div.qk.Gc");
         if (previous_btn.length) break;
+        previous_btn = btns_row.children("div.R7Leqb");
+        if (previous_btn.length) break;
         previous_btn = btns_row.children("div.esw.Hf.Od"); } while (false);
-      var ele_option = previous_btn
-            .after("<div style='float: left;'></div>").next()
-            .addClass('dsg-option')
-            .css({ marginTop: ((btns_row.height() - 18) / 2) + "px" });
+
+      console.log(previous_btn);
+
+      var ele_option = $(".R7Leqb").addClass('dsg-option');
 /*
      var ele_option = ele_content_panel_parent
       .parent()
@@ -875,8 +883,9 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
 
 $(function(){
   var picasa_earth = new PicasaEarth();
+  console.log("!!! PicasaEarth")
 
-  $('#contentPane').on('mouseover', selecter.post_panel, function() {
+  $('.kqngbc').on('mouseover', selecter.post_panel, function() {
     picasa_earth.addButtons($(this));
   }).on('click', selecter.post_panel, function() {
     picasa_earth.addButtons($(this));
