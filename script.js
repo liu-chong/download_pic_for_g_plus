@@ -11,7 +11,7 @@ DOM sample
 */
 
 var selecter = {
-  post_panel : 'div[data-iid]',
+  post_panel : 'div[jsname="WsjYwc"]',
   plus_one_button : '[id^="po-"]'
 };
 
@@ -114,6 +114,7 @@ var PicasaEarth = function(){
   // 各機能ボタンを追加する (ひたすらDOM操作)
   // マウスオーバーで起動し、記事内容にある画像・動画の有無・種類を確認する
   that.addButtons = function(ele_post_panels){
+    console.log("addButtons!!!");
     ele_post_panels = ele_post_panels || ele_contentPane
       .find(selecter.post_panel)
       .not('.dsg-post-checked');
@@ -131,7 +132,7 @@ var PicasaEarth = function(){
       th.addClass('dsg-post-checked');
 
       var imgs_wrap = null; // img on event
-      [ ".bldpQb", "a.Ks", "div.Oaa", "div.mU",
+      [ ".bldpQb", ".rnOlib", "a.Ks", "div.Oaa", "div.mU",
           "div.Yj.Fg.FB" ].map(function(n) {
         if (imgs_wrap != null) return ;
         var doc = th.find(n);
@@ -384,10 +385,10 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
   that.getRawImageDownloadURL = function(url) {
     url = url.replace(/\/[swh]\d+\//i, '/d/');
     url = url.replace(/\/[swh]\d+-[op]\//i, '/d/');
+    url = url.replace(/\/[swh]\d+-[op]-.+\//i, '/d/');
     url = url.replace(/\/[swh]\d+-[swh]\d+\//i, '/d/');
-    url = url.replace(/\/w\d+-h\d+-p\//, '/d/');
-    url = url.replace(/\/w\d+-h\d+-o\//, '/d/');
-    url = url.replace(/\/w\d+-h\d+-[np]-[orw]+\//, '/d/');
+    url = url.replace(/\/w\d+-h\d+-.+\//, '/d/');
+    url = url.replace(/\/w\d+-d-h\d+-.+\//, '/d/');
     url = url.replace(/=w\d+-h\d+/, '=d');
     return url;
   }
@@ -401,15 +402,13 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
       if (!img_url) return false;
       
       var raw_img_url = img_url;
-      console.log(raw_img_url);
       raw_img_url = raw_img_url.replace(/\/[swh]\d+\//i, '/s0/');
       raw_img_url = raw_img_url.replace(/\/[swh]\d+-[swh]\d+\//i, '/s0/');
       raw_img_url = raw_img_url.replace(/\/[swh]\d+-[op]\//i, '/s0/');
-      raw_img_url = raw_img_url.replace(/\/w\d+-h\d+-p\//, '/s0/');
-      raw_img_url = raw_img_url.replace(/\/w\d+-h\d+-o\//, '/s0/');
-      raw_img_url = raw_img_url.replace(/\/w\d+-h\d+-[np]-[orw]+\//, '/s0/')
+      raw_img_url = raw_img_url.replace(/\/[swh]\d+-[op]-.+\//i, '/s0/');
+      raw_img_url = raw_img_url.replace(/\/w\d+-h\d+-.+\//, '/s0/')
+      raw_img_url = raw_img_url.replace(/\/w\d+-d-h\d+-.+\//, '/s0/')
       raw_img_url = raw_img_url.replace(/=w\d+-h\d+/, '=s0');
-      console.log(raw_img_url);
       urls.push(raw_img_url);
     });
     urls = that.getUniqueArray(urls);
@@ -867,7 +866,7 @@ $(function(){
   var picasa_earth = new PicasaEarth();
   console.log("!!! PicasaEarth")
 
-  $('.kqngbc').on('mouseover', selecter.post_panel, function() {
+  $('div[jsname="qJTHM"]').on('mouseover', selecter.post_panel, function() {
     picasa_earth.addButtons($(this));
   }).on('click', selecter.post_panel, function() {
     picasa_earth.addButtons($(this));
