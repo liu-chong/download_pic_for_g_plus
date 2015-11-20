@@ -151,6 +151,21 @@ var PicasaEarth = function(){
         .addClass('dsg-buttons')
 //        .addClass('dsg-buttons-side');
 
+      if (!btns_row.length) {
+        btns_row = ele_post_panels.find('div.Qg');
+        var previous_btn = null; do {
+          previous_btn = btns_row.children("div.Dg.eaGJ0e");
+          if (previous_btn.length) break;
+          previous_btn = btns_row.children("div.Dg.Ut");
+          if (previous_btn.length) break;
+          previous_btn = btns_row.children("div.qk.Gc");
+          if (previous_btn.length) break;
+          previous_btn = btns_row.children("div.esw.Hf.Od"); } while (false);
+        ele_option = previous_btn
+              .after("<div style='float: left;'></div>").next()
+              .addClass('dsg-option').css({ marginLeft: 8 });
+      }
+
 /*
      var ele_option = ele_content_panel_parent
       .parent()
@@ -390,6 +405,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
     url = url.replace(/\/w\d+-d-h\d+-.+\//, '/d/');
     url = url.replace(/=w\d+-h\d+/, '=d');
     url = url.replace(/=s\d+-[op]-.+$/, '=d');
+    url = url.replace(/=s\d+$/, '=d');
     return url;
   }
 
@@ -410,6 +426,7 @@ http://o-o.preferred.sonet-hnd1.v1.lscache3.c.youtube.com/generate_204?sparams=i
       raw_img_url = raw_img_url.replace(/\/w\d+-d-h\d+-.+\//, '/s0/')
       raw_img_url = raw_img_url.replace(/=w\d+-h\d+/, '=s0');
       raw_img_url = raw_img_url.replace(/=s\d+-[op]-.+$/, '=s0');
+      raw_img_url = raw_img_url.replace(/=s\d+$/, '=s0');
       urls.push(raw_img_url);
     });
     urls = that.getUniqueArray(urls);
@@ -867,7 +884,13 @@ $(function(){
   var picasa_earth = new PicasaEarth();
   console.log("!!! PicasaEarth")
 
-  $('div[jsname="qJTHM"]').on('mouseover', selecter.post_panel, function() {
+  var list = $('div[jsname="qJTHM"]');
+  if (!list.length) {
+    list = $('#contentPane')
+    selecter.post_panel = '[id^="update-"]'
+  }
+  if (!list.length) return console.log("!!! post list not found");
+  list.on('mouseover', selecter.post_panel, function() {
     picasa_earth.addButtons($(this));
   }).on('click', selecter.post_panel, function() {
     picasa_earth.addButtons($(this));
