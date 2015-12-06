@@ -131,7 +131,7 @@ var PicasaEarth = function(){
       th.addClass('dsg-post-checked');
 
       var imgs_wrap = null; // img on event
-      [ ".bldpQb", ".rnOlib", "a.Ks", "div.Oaa", "div.mU",
+      [ ".bldpQb", ".njiUWc", ".rnOlib", "a.Ks", "div.Oaa", "div.mU",
           "div.Yj.Fg.FB" ].map(function(n) {
         if (imgs_wrap != null) return ;
         var doc = th.find(n);
